@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozgrywki futbolowe</title>
+    <link rel="stylesheet" href="styl.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Baner -->
+        <div id="baner">
+            <h2>Światowe rozgrywki piłkarskie</h2>
+            <img src="./dane/obraz1.jpg" alt="boisko">
+        </div>
+        
+        <!-- Mecze -->
+        <div id="mecze">
+            
+        </div>
+        
+        <!-- Główny blok -->
+        <div id="główny">
+            <h2>Reprezentacja Polski</h2>
+        </div>
+        
+        <!-- Lewy blok -->
+        <div id="lewy">
+            <p>Podaj pozycję zawodników (1-bramkarze, 2-obrońcy, 3-pomocnicy, 4-napastnicy):</p>
+            <form action="futbol.php" method="POST">
+                <input type="number" name="pozycja" min="1" max="4">
+                <input type="submit" value="Sprawdź">
+            </form>
+            <ul>
+                <li>Arkadiusz Milik</li>
+                <li>Adam Buksa</li>
+            </ul>
+        </div>
+
+        <!-- Prawy blok -->
+        <div id="prawy">
+            <img src="dane/zad1.png" alt="piłkarz">
+            <p>Autor: Paweł Żołyński</p>
+        </div>
+    </div>
+</body>
+</html>
