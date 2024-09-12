@@ -1,1 +1,62 @@
+body {
+    font-family: Tahoma, sans-serif;
+    background-color: Crimson;
+}
 
+#baner {
+    color: white;
+    text-align: center;
+    height: 370px;
+}
+
+#mecze {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.mecz {
+    color: white;
+    text-align: center;
+    width: 200px;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.mecz:hover {
+    border-color: white;
+}
+
+#główny {
+    background-color: WhiteSmoke;
+    height: 50px;
+    text-align: center;
+}
+
+#lewy {
+    background-color: WhiteSmoke;
+    width: 70%;
+    height: 230px;
+    float: left;
+    padding: 10px;
+}
+
+#prawy {
+    background-color: WhiteSmoke;
+    width: 20%;
+    /* Zwiększam szerokość na 20%, aby zapewnić odpowiednie miejsce na obrazek */
+    height: 230px;
+    float: left;
+    text-align: right;
+    padding: 10px;
+    box-sizing: border-box;
+    /* Upewnia się, że padding nie wpływa na całkowitą szerokość elementu */
+}
+
+#prawy img {
+    width: 100%;
+    /* Sprawia, że obrazek dostosowuje się do szerokości kontenera */
+    height: auto;
+    /* Utrzymuje proporcje obrazka */
+}
