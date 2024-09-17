@@ -1,0 +1,53 @@
+body {
+    font-family: Garamond, serif;
+}
+
+#baner {
+    background-color: SaddleBrown;
+    color: white;
+    text-align: center;
+    height: 50px;
+}
+
+#blok-lewy {
+    background-color: Tan;
+    height: 500px;
+    width: 40%;
+    float: left;
+}
+
+#blok-prawy-1,
+#blok-prawy-2 {
+    background-color: Tan;
+    height: 250px;
+    width: 60%;
+    float: right;
+}
+
+#stopka {
+    background-color: SaddleBrown;
+    color: white;
+    clear: both;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+form {
+    background-color: SaddleBrown;
+    color: white;
+    padding: 10px 30px;
+    width: 300px;
+    height: 300px;
+}
+
+form input {
+    margin: 5px 0;
+    width: calc(100% - 20px);
+    /* Dostosowanie szerokości */
+}
+
+form label {
+    display: inline-block;
+    width: 100px;
+}
