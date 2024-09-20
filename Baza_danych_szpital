@@ -96,3 +96,9 @@ VALUES
 ('COVID-19', 'COVID-19', FALSE, TRUE, 'średnia'),
 ('Angina', 'Strep throat', TRUE, FALSE, 'niska'),
 ('Cholera', 'Cholera', TRUE, FALSE, 'wysoka');
+
+-- Zadanie
+ALTER TABLE choroba
+ADD COLUMN id_pacjenta INT,
+ADD CONSTRAINT fk_pacjent_choroba
+FOREIGN KEY (id_pacjenta) REFERENCES pacjent(id_pacjenta);
