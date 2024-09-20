@@ -1,0 +1,98 @@
+CREATE TABLE pacjent (
+    id_pacjenta INT PRIMARY KEY AUTO_INCREMENT,
+    imię VARCHAR(50) NOT NULL,
+    nazwisko VARCHAR(50) NOT NULL,
+    adres VARCHAR(100),
+    telefon VARCHAR(15),
+    pesel VARCHAR(11) UNIQUE NOT NULL
+);
+
+CREATE TABLE lekarz (
+    id_lekarza INT PRIMARY KEY AUTO_INCREMENT,
+    imię VARCHAR(50) NOT NULL,
+    nazwisko VARCHAR(50) NOT NULL,
+    adres VARCHAR(100),
+    telefon VARCHAR(15),
+    pesel VARCHAR(11) UNIQUE NOT NULL,
+    płaca_podstawowa DECIMAL(10, 2) NOT NULL,
+    specjalność VARCHAR(100)
+);
+
+CREATE TABLE operacja (
+    id_operacji INT PRIMARY KEY AUTO_INCREMENT,
+    opis TEXT NOT NULL,
+    data_operacji DATE NOT NULL,
+    id_lekarza INT,
+    id_pacjenta INT,
+    id_pielęgniarki INT,
+    FOREIGN KEY (id_lekarza) REFERENCES lekarz(id_lekarza),
+    FOREIGN KEY (id_pacjenta) REFERENCES pacjent(id_pacjenta),
+    FOREIGN KEY (id_pielęgniarki) REFERENCES pielegniarka(id_pielegniarki)
+);
+
+CREATE TABLE pielegniarka (
+    id_pielegniarki INT PRIMARY KEY AUTO_INCREMENT,
+    imię VARCHAR(50) NOT NULL,
+    nazwisko VARCHAR(50) NOT NULL,
+    adres VARCHAR(100),
+    tel VARCHAR(15),
+    pesel VARCHAR(11) UNIQUE NOT NULL,
+    płaca_podstawowa DECIMAL(10, 2) NOT NULL,
+    dział VARCHAR(50)
+);
+
+CREATE TABLE choroba (
+    id_choroby INT PRIMARY KEY AUTO_INCREMENT,
+    nazwa VARCHAR(100) NOT NULL,
+    nazwa_angielska VARCHAR(100),
+    czy_wywołana_bakterią BOOLEAN,
+    czy_wywołana_wirusem BOOLEAN,
+    śmiertelność ENUM('niska', 'średnia', 'wysoka') NOT NULL
+);
+
+-- Wstawianie danych do tabel
+
+-- Pacjent
+INSERT INTO pacjent (imię, nazwisko, adres, telefon, pesel)
+VALUES 
+('Jan', 'Kowalski', 'ul. Warszawska 10, 00-001 Warszawa', '123456789', '90010112345'),
+('Anna', 'Nowak', 'ul. Poznańska 5, 00-001 Poznań', '987654321', '80101012345'),
+('Piotr', 'Wiśniewski', 'ul. Gdańska 15, 00-001 Gdańsk', '123987654', '71010123456'),
+('Maria', 'Zielińska', 'ul. Krakowska 20, 00-001 Kraków', '564738291', '67010123456'),
+('Krzysztof', 'Lewandowski', 'ul. Wrocławska 30, 00-001 Wrocław', '987321654', '65010123456');
+
+-- Lekarz
+INSERT INTO lekarz (imię, nazwisko, adres, telefon, pesel, płaca_podstawowa, specjalność)
+VALUES 
+('Anna', 'Kowalska', 'ul. Warszawska 10, 00-001 Warszawa', '123456789', '90010112345', 5500.00, 'Chirurg'),
+('Jan', 'Nowak', 'ul. Poznańska 5, 00-001 Poznań', '987654321', '80101012345', 6200.00, 'Kardiolog'),
+('Piotr', 'Wiśniewski', 'ul. Gdańska 15, 00-001 Gdańsk', '123987654', '71010123456', 4800.00, 'Neurolog'),
+('Maria', 'Zielińska', 'ul. Krakowska 20, 00-001 Kraków', '564738291', '67010123456', 5300.00, 'Ortopeda'),
+('Krzysztof', 'Lewandowski', 'ul. Wrocławska 30, 00-001 Wrocław', '987321654', '65010123456', 6000.00, 'Pediatra');
+
+-- Operacja
+INSERT INTO operacja (opis, data_operacji, id_lekarza, id_pacjenta, id_pielęgniarki)
+VALUES 
+('Operacja wycięcia wyrostka', '2023-09-20', 1, 1, 1),
+('Operacja serca', '2023-09-15', 2, 2, 2),
+('Operacja kręgosłupa', '2023-09-10', 3, 3, 3),
+('Operacja kolana', '2023-09-05', 4, 4, 4),
+('Operacja biodra', '2023-09-01', 5, 5, 5);
+
+-- Pielęgniarka
+INSERT INTO pielegniarka (imię, nazwisko, adres, tel, pesel, płaca_podstawowa, dział)
+VALUES 
+('Anna', 'Wiśniewska', 'ul. Warszawska 10, 00-001 Warszawa', '123456789', '90010112345', 3200.00, 'Oddział Chirurgii'),
+('Piotr', 'Nowak', 'ul. Poznańska 5, 00-001 Poznań', '987654321', '80101012345', 3400.00, 'Oddział Kardiologii'),
+('Maria', 'Zielińska', 'ul. Krakowska 20, 00-001 Kraków', '564738291', '67010123456', 3100.00, 'Oddział Neurologii'),
+('Krzysztof', 'Wiśniewski', 'ul. Wrocławska 30, 00-001 Wrocław', '987321654', '65010123456', 3600.00, 'Oddział Ortopedii'),
+('Anna', 'Lewandowska', 'ul. Gdańska 15, 00-001 Gdańsk', '123987654', '71010123456', 3300.00, 'Oddział Pediatrii');
+
+-- Choroba
+INSERT INTO choroba (nazwa, nazwa_angielska, czy_wywołana_bakterią, czy_wywołana_wirusem, śmiertelność)
+VALUES 
+('Gruźlica', 'Tuberculosis', TRUE, FALSE, 'wysoka'),
+('Grypa', 'Influenza', FALSE, TRUE, 'niska'),
+('COVID-19', 'COVID-19', FALSE, TRUE, 'średnia'),
+('Angina', 'Strep throat', TRUE, FALSE, 'niska'),
+('Cholera', 'Cholera', TRUE, FALSE, 'wysoka');
