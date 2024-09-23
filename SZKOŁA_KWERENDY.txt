@@ -1,0 +1,65 @@
+1. INSERT INTO uczen (Imie, Nazwisko, TelefonDoUcznia, TelefonDoRodzica, TelefonDoRodzica2, DataUrodzenia, WysokośćStypendium, WalutaStypendium, CzyObcokrajowiec)
+VALUES
+('Jan', 'Kowalski', '123456789', '987654321', '987654321', '2004-04-15', 500.00, 'PLN', 0),
+('Anna', 'Nowak', '123456788', '987654322', '987654322', '2003-08-21', 700.00, 'PLN', 0),
+('Piotr', 'Zieliński', '123456787', '987654323', '987654323', '2002-02-19', 600.00, 'PLN', 0),
+('Katarzyna', 'Wiśniewska', '123456786', '987654324', '987654324', '2004-11-12', 650.00, 'PLN', 0),
+('Michał', 'Wójcik', '123456785', '987654325', '987654325', '2006-07-30', 550.00, 'PLN', 0);
+
+2.SELECT * FROM uczen
+ORDER BY Nazwisko ASC;
+
+3.ALTER TABLE uczen
+MODIFY Nazwisko VARCHAR(20);
+
+4.SELECT * FROM uczen
+WHERE DataUrodzenia <= CURDATE() - INTERVAL 18 YEAR
+ORDER BY DataUrodzenia DESC;
+
+5.SELECT COUNT(*) AS LiczbaPełnoletnich
+FROM uczen
+WHERE DataUrodzenia <= '2006-05-01';
+
+6.SELECT * FROM uczen
+WHERE DataUrodzenia = CURDATE() - INTERVAL 15 YEAR;
+
+7.INSERT INTO uczen (Imie, Nazwisko, TelefonDoUcznia, TelefonDoRodzica, TelefonDoRodzica2, DataUrodzenia, WysokośćStypendium, WalutaStypendium, CzyObcokrajowiec)
+VALUES
+('John', 'Smith', '123456700', '987654400', '987654400', '2005-03-22', 500.00, 'USD', 1),
+('Wei', 'Chen', '123456701', '987654401', '987654401', '2004-06-11', 550.00, 'CNY', 1),
+('Maria', 'Santos', '123456702', '987654402', '987654402', '2003-09-15', 600.00, 'BRL', 1);
+
+8.INSERT INTO uczen (Imie, Nazwisko, TelefonDoUcznia, TelefonDoRodzica, TelefonDoRodzica2, DataUrodzenia, WysokośćStypendium, WalutaStypendium, CzyObcokrajowiec)
+VALUES
+('Lukas', 'Schmidt', '123456710', '987654410', '987654410', '2005-07-20', 700.00, 'EUR', 0),
+('Sofia', 'Garcia', '123456711', '987654411', '987654411', '2004-11-02', 650.00, 'EUR', 0),
+('Marco', 'Rossi', '123456712', '987654412', '987654412', '2003-12-11', 600.00, 'EUR', 0),
+('Marta', 'Jensen', '123456713', '987654413', '987654413', '2006-01-25', 500.00, 'DKK', 0),
+('Tom', 'Olsen', '123456714', '987654414', '987654414', '2004-05-18', 550.00, 'NOK', 0),
+('Elena', 'Ferreira', '123456715', '987654415', '987654415', '2005-03-13', 600.00, 'EUR', 0);
+
+9.SELECT Imie, Nazwisko, WysokośćStypendium
+FROM uczen;
+
+
+10.SELECT u.Imie, u.Nazwisko, u.WysokośćStypendium,
+       u.WysokośćStypendium / w.WartośćDlaJednejZłotówki AS StypendiumWWalucieNarodowej
+FROM uczen u
+JOIN waluta w ON u.WalutaStypendium = w.Waluta;
+
+
+WALUTY:
+1.INSERT INTO waluta (Waluta, Kraj, WartośćDlaJednejZłotówki)
+VALUES
+('EUR', 'Euro', 0.22),
+('GBP', 'Wielka Brytania', 0.19),
+('JPY', 'Japonia', 30.12),
+('CNY', 'Chiny', 1.37),
+('CHF', 'Szwajcaria', 0.24);
+
+2.INSERT INTO waluta (Waluta, Kraj, WartośćDlaJednejZłotówki)
+VALUES
+('USD', 'Stany Zjednoczone', 0.25),
+('CAD', 'Kanada', 0.31),
+('AUD', 'Australia', 0.38);
+
